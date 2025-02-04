@@ -4,7 +4,7 @@ import argparse
 
 from Preprocess import Preprocess
 
-# custom report file
+
 report_file = "report.txt"
 report_type_file = "report_type.txt"
 log_file = "log.txt"
@@ -17,7 +17,6 @@ def deal_apk(apk_name):
     return apk_name
 
 
-# 处理apk目录
 def deal_apk_folder(apk_path):
     apk_list = []
     if not os.path.exists(apk_path):

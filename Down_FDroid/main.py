@@ -20,8 +20,10 @@ category_txt = "category.txt"
 
 # Proxy settings (replace with actual proxy if needed)
 proxies = {
-    'http': 'http://192.168.0.106:7890',
-    'https': 'http://192.168.0.106:7890',
+    # 'http': 'http://192.168.0.106:7890',
+    # 'https': 'http://192.168.0.106:7890',
+    'http': 'http://127.0.0.1:7890',
+    'https': 'http://127.0.0.1:7890',
 }
 
 headers = {
@@ -59,6 +61,7 @@ def downFirstTxt(url, sub_folder):
     soup = BeautifulSoup(reponse.text, "lxml")
     context = soup.find("div", id="package-list")
     lists = context.find_all("a")
+
     num = 1
     with open(sub_folder, "a+") as f:
         for list_1 in lists:
@@ -66,7 +69,13 @@ def downFirstTxt(url, sub_folder):
                 # Check if the link_tag is not None
                 url_link = home_url + list_1['href']
                 print("[+] download the apk:", url_link)
-                f.write(url_link + "\n")
+                reponse1 = requests.get(url_link, proxies=proxies, headers=headers, timeout=(10, 20))
+                selector = etree.HTML(reponse1.text)
+                # # get the apk
+                link = selector.xpath('//*[@id="latest"]/p[4]/b/a/@href')
+                link = str(link)[2:-2]
+                print(link)
+                f.write(link + "\n")
             num = num + 1
 
 
@@ -76,17 +85,11 @@ def downTxt(url, sub_folder):
     soup = BeautifulSoup(reponse.text, "lxml")
     context = soup.find("div", id="news-content")
     lists = context.find_all("div")
+
     num = 1
     with open(sub_folder, "a+") as f:
         for list_1 in lists:
-            # print(list_1)
-            if num <= 30:
-                # purl = home_url + list_1.find("a")['href']
-                # url_link = home_url + list_1.find('a', class_='post-link')['href']
-                # Assuming list_1 is already defined and contains valid HTML content
-
-                # Find the <a> tag
-                # link_tag = list_1.find('a', class_='post-link')
+            if num <= 60:
                 link_tag = list_1.find("a")
 
                 # Check if the link_tag is not None
@@ -94,20 +97,18 @@ def downTxt(url, sub_folder):
                     url_link = home_url + link_tag['href']
                     print("[+] download the apk:", url_link)
 
-                    # reponse1 = requests.get(url_link, proxies=proxies, headers=headers, timeout=(10, 20))
-                    # selector = etree.HTML(reponse1.text)
-                    # # print("74", selector)
-                    # # # get the apk
-                    # link = selector.xpath('//*[@id="latest"]/p[3]/b/a/@href')
-                    # link = str(link)[2:-2]
-                    # print(link)
-                    f.write(url_link + "\n")
+                    reponse1 = requests.get(url_link, proxies=proxies, headers=headers, timeout=(10, 20))
+                    selector = etree.HTML(reponse1.text)
+                    # # get the apk
+                    link = selector.xpath('//*[@id="latest"]/p[4]/b/a/@href')
+                    link = str(link)[2:-2]
+                    print(link)
+                    f.write(link + "\n")
 
-
-                # get the tar.gz
-                # link1 = selector.xpath('//*[@id="latest"]/p[2]/a/@href')
-                # link1 = str(link1)[2:-2]
-                # print(link1)
+                    # get the tar.gz
+                    # link1 = selector.xpath('//*[@id="latest"]/p[2]/a/@href')
+                    # link1 = str(link1)[2:-2]
+                    # print(link1)
             num = num + 1
 
 

@@ -10,17 +10,17 @@ class Preprocess:
         self.out_path = out_path
         self.Decompile_path = out_path + "/decompile"
 
-    # 使用apktool处理apk
+    # decompile the apk via apktool tool
     def apktool(self):
         out = os.path.join(self.Decompile_path, self.apkname)
         if not os.path.exists(out):
             cmd = "java -jar apktool_2.6*.jar d -f " + self.name + " -o " + out
             print(cmd)
-            # print(" [+] 1. using the apktools.")
             os.system(cmd)
         else:
             print(" [+] Has been preocessed by apktool.")
 
+    # report the apk information
     def report(self):
         tmp, tmp1 = [], []
         if utils.judge_apktool(self.Decompile_path, self.apkname) == -1:
@@ -28,24 +28,24 @@ class Preprocess:
                 f.write(f"{self.apkname}: apktool decompile failed.\n")
             tmp.append(self.apkname)
         else:
-            # 名字
+            # apk name
             tmp.append(self.apkname)
-            # 是否存在lib函数
+            # judge have so file in apk
             tmp.append(utils.judge_so_files(self.Decompile_path, self.apkname))
-            # 对应的arch架构
+            # obtain the cpu arch with apk so file
             tmp.append(utils.get_so_files(self.Decompile_path, self.apkname))
-            # 是否存在native-activity
+            # native-activity
             if utils.get_native_activity(self.Decompile_path, self.apkname) == -1:
                 tmp.append(0)
             else:
                 tmp.append(1)
-            # native个数
+            # native
             tmp.append(utils.get_native_methods(self.Decompile_path, self.apkname, self.out_path))
-            # so文件个数(静态注册+动态注册)
+            
             tmp.append(utils.get_so_nums(self.Decompile_path, self.apkname))
             tmp.append(utils.get_have_elf(self.Decompile_path, self.apkname))
 
-            # 名字
+            # apk name
             tmp1.append(self.apkname)
             tmp1.append(utils.get_native_methods_types(self.Decompile_path, self.apkname, self.out_path))
         return tmp, tmp1

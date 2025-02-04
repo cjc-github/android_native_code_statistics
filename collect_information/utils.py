@@ -24,7 +24,6 @@ def judge_apktool(decom_path, name):
     if not os.path.exists(xml_path) or os.path.getsize(xml_path) == 0:
         return -1
 
-
 def judge_so_files(decom_path, name):
     decompile_path = os.path.join(decom_path, name)
     if not os.path.exists(os.path.join(decompile_path, "lib")):
@@ -33,27 +32,24 @@ def judge_so_files(decom_path, name):
         return 1
 
 
-# 返回apk路径
 def get_so_nums(decom_path, name):
     tmp = [0, 0, 0]
     apkUrl = os.path.join(decom_path, name)
     set0 = set()
-    set1 = set()  # set1为不重复的so文件
+    set1 = set()
     if not os.path.exists(os.path.join(apkUrl, "lib")):
         return tmp
     else:
         for abilist in os.listdir(apkUrl + "/lib"):
             slibs = os.path.join(apkUrl + "/lib", abilist)
-            # 确保是目录
             if os.path.isdir(slibs):
                 for soList in os.listdir(slibs):
-                    # 每个so文件的绝对路径
+
                     soFilePath = os.path.join(slibs, soList)
                     if soList not in set0 and soFilePath.endswith(".so"):
                         set1.add(soFilePath)
                     set0.add(soList)
         tmp[0] = len(set1)
-        # set_1为每个so的绝对地址
         stat, dyna = 0, 0
         for set_1 in set1:
             cmd = "nm -D " + set_1 + " | grep 'Java_' | wc -l"
@@ -71,9 +67,9 @@ def get_so_nums(decom_path, name):
         return tmp
 
 
-# 返回apk路径
+# return so files path
 def get_so_files(decom_path, name):
-    # arm64-v8a,armeabi-v7a,armeabi,x86,x86_64,mips,mips64,other
+    # arm64-v8a, armeabi-v7a, armeabi, x86, x86_64, mips, mips64, other
     all_archs = ["arm64-v8a", "armeabi-v7a", "armeabi", "x86", "x86_64", "mips", "mips64", "other"]
     tmp = [0, 0, 0, 0, 0, 0, 0, 0]
     decompile_path = os.path.join(decom_path, name)

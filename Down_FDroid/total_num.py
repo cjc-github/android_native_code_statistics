@@ -1,9 +1,11 @@
 import os
 
+category_txt = "category.txt"
+folder_path = "fdroid_urlink_20250204"
+
 
 # get home num
 def get_home_num():
-    category_txt = "category.txt"
     num = 0
     with open(category_txt, "r") as f:
         lines = f.readlines()
@@ -17,7 +19,6 @@ def get_home_num():
 # get apk num
 def get_apk_num():
     total_lines = 0
-    folder_path = "fdroid_urlink_20250201"
 
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
