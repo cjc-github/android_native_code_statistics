@@ -1,3 +1,4 @@
+import shutil
 import sys
 import os.path
 import argparse
@@ -74,3 +75,11 @@ if __name__ == '__main__':
 
         with open(report_type_file_path, "a") as f:
             f.write(str(tmp1) + "\n")
+
+        # deal the decompile folder
+        decompile_path = os.path.join(out_folder, "decompile", apk[:-4].rsplit("/", 1)[1])
+        if os.path.exists(decompile_path):
+            shutil.rmtree(decompile_path)
+            print(f"目录 {decompile_path} 已删除。")
+        else:
+            print(f"目录 {decompile_path} 不存在。")
