@@ -145,7 +145,7 @@ def main():
     }
 
     try:
-        with open("type1_3500.txt", "r") as f:
+        with open("fdroid_report.txt", "r") as f:
             lines = f.readlines()
             for line in lines:
                 lists = parse_line(line)

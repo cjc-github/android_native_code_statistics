@@ -80,6 +80,6 @@ if __name__ == '__main__':
         decompile_path = os.path.join(out_folder, "decompile", apk[:-4].rsplit("/", 1)[1])
         if os.path.exists(decompile_path):
             shutil.rmtree(decompile_path)
-            print(f"目录 {decompile_path} 已删除。")
+            print(f"the folder {decompile_path} is delete.")
         else:
-            print(f"目录 {decompile_path} 不存在。")
+            print(f"the folder {decompile_path} is not exist.")

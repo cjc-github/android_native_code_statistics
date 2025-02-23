@@ -112,13 +112,21 @@ def get_native_activity(decom_path, name):
         DOMTree = xml.dom.minidom.parse(Manifest)
         collection = DOMTree.documentElement
         Results = collection.getElementsByTagName("activity")
+
         for result in Results:
-            metas = result.getElementsByTagName("meta-data")
-            for meta in metas:
-                if meta and meta.getAttribute("android:value") == "native-activity":
-                    tags = tags + result.getAttribute("android:name") + ","
-        if tags[:-1] != "":
-            return 1
+            activity_name = result.getAttribute("android:name")
+            if activity_name == "android.app.NativeActivity":
+                # print(activity_name)
+                return 1
+
+
+        # for result in Results:
+        #     metas = result.getElementsByTagName("meta-data")
+        #     for meta in metas:
+        #         if meta and meta.getAttribute("android:value") == "native-activity":
+        #             tags = tags + result.getAttribute("android:name") + ","
+        # if tags[:-1] != "":
+        #     return 1
     return -1
 
 
