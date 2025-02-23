@@ -10,7 +10,7 @@ if __name__=="__main__":
     have_other_elf,have_pwd_zip=0,0
     have_other_num,have_pwd_num=0,0
     res=0
-    with open("type1_3500.txt","r") as f:
+    with open("androzoo_report.txt","r") as f:
         lines=f.readlines()
         for i in lines:
             lists=i.strip().replace(" ","").replace("[","").replace("]","").replace(")","").replace("(","").split(",")

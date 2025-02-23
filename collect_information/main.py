@@ -64,22 +64,27 @@ if __name__ == '__main__':
 
     for i, apk in enumerate(apk_lists):
         print("[+] No." + str(i), ":", apk)
-        pre_deal = Preprocess(apk, out_folder)
-        # using apktool to decompile the apk
-        pre_deal.apktool()
+        try:
+            pre_deal = Preprocess(apk, out_folder)
+            # using apktool to decompile the apk
+            pre_deal.apktool()
 
-        # save the basic information to report.txt
-        tmp, tmp1 = pre_deal.report()
-        with open(report_file_path, "a") as f:
-            f.write(str(tmp) + "\n")
+            # save the basic information to report.txt
+            tmp, tmp1 = pre_deal.report()
+            with open(report_file_path, "a") as f:
+                f.write(str(tmp) + "\n")
 
-        with open(report_type_file_path, "a") as f:
-            f.write(str(tmp1) + "\n")
+            with open(report_type_file_path, "a") as f:
+                f.write(str(tmp1) + "\n")
 
-        # deal the decompile folder
-        decompile_path = os.path.join(out_folder, "decompile", apk[:-4].rsplit("/", 1)[1])
-        if os.path.exists(decompile_path):
-            shutil.rmtree(decompile_path)
-            print(f"the folder {decompile_path} is delete.")
-        else:
-            print(f"the folder {decompile_path} is not exist.")
+            # deal the decompile folder
+            decompile_path = os.path.join(out_folder, "decompile", apk[:-4].rsplit("/", 1)[1])
+            if os.path.exists(decompile_path):
+                shutil.rmtree(decompile_path)
+                print(f"the folder {decompile_path} is delete.")
+            else:
+                print(f"the folder {decompile_path} is not exist.")
+        except Exception as e:
+            print("the apk decompile exception", apk)
+            with open("err.log", "w") as f:
+                f.write(f"the apk decompile exceptionf{apk}\n")

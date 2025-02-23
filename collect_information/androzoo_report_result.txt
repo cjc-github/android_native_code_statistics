@@ -1,0 +1,35 @@
+total_num 5334
+have_lib 1645 par 0.3083989501312336
+have_native 4207 par 0.7887139107611548
+============arch=============
+arm64_v8a 919 par
+armeabi-v7a 1454 par 0.8838905775075988
+armeabi 950 par 0.5775075987841946
+x86 456 par 0.2772036474164134
+x86_64 291 par 0.17689969604863223
+mips 19 par 0.011550151975683891
+mips64 14 par 0.00851063829787234
+other 28 par 0.01702127659574468
+============native_activity==========
+native_activity 0
+===========native func============
+native_function_num 675260
+native_fun_stat 294884 par 0.43669697597962265
+native_fun_nostat 380376 par 0.5633030240203774
+=============native type==============
+total_all_type 3113470
+total_basic_type 1851057 par 0.5945318246201184
+total_icc_type 8899 par 0.0028582257095780593
+total_complex_type 1253514 par 0.40260994967030356
+===============so static or dynamic============
+so_file 6177
+so_static_file 3834 par 0.6206896551724138
+so_dynamic_file 2741 par 0.4437429172737575
+============other inf=========
+have_other_num 1305
+have_pwd_num 21
+have_other_elf 6394 par 0.24465691788526434
+have_pwd_zip 21 par 0.003937007874015748
+=============finish============
+defailed_num 0
+369

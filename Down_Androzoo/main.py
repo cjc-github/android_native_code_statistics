@@ -21,7 +21,9 @@ def split_list(lst, n):
 
     return chunks
 
-
+"""
+curl -O --remote-header-name -G -d apikey=e0c715109421c1282aeea45d09f68baaa6eb65304d9f52e9fa3bf83f494dc691 -d sha256=009DB20C25030B40C4047B91AE240B18AD796372830B36ED41E614843094C196 https://androzoo.uni.lu/api/download
+"""
 def download(i):
     for j in i:
         key = "e0c715109421c1282aeea45d09f68baaa6eb65304d9f52e9fa3bf83f494dc691"
@@ -67,7 +69,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # way1 
-    main(args.filename)
+    # main(args.filename)
 
     # way2
-    # main1(args.filename)
+    main1(args.filename)

@@ -1,2 +1,0 @@
-apk_name, have_lib, [arm64-v8a, armeabi-v7a, armeabi, x86, x86_64, mips, mips64, other], native-activity, ([jni_method_total_num, static_num, nostatic_num], [total_all_type, total_basic_type, total_icc_type, total_complex_type, total_complex_type]), [so_total_num, so_Java_num, so_onLoad_num], [have_other_elf, have_pwd_zip]
-['native_leak', 1, [1, 1, 1, 0, 0, 0, 0, 0], 0, ([1, 1, 0], [2, 2, 0, 0]), [1, 1, 0], [0, 0]]
