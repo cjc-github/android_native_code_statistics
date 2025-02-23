@@ -196,7 +196,7 @@ def get_native_methods(decom_path, name, out):
                     elif j in icc_type:
                         total_icc_type += 1
                     else:
-                        print("complex:", j)
+                        # print("complex:", j)
                         complex_set.add(j)
                         total_complex_type += 1
                 if res[1][0] in basic_type:
@@ -204,7 +204,7 @@ def get_native_methods(decom_path, name, out):
                 elif res[1][0] in icc_type:
                     total_icc_type += 1
                 else:
-                    print("complex:", res[1][0])
+                    # print("complex:", res[1][0])
                     complex_set.add(res[1][0])
                     total_complex_type += 1
             # print(result)
